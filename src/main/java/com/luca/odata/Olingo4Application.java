@@ -1,4 +1,4 @@
-package com.luca.olingo4;
+package com.luca.odata;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

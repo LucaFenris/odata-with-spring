@@ -1,4 +1,4 @@
-package com.luca.olingo4.model;
+package com.luca.odata.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

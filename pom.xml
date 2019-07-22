@@ -10,9 +10,9 @@
 	</parent>
 
 	<groupId>com.luca</groupId>
-	<artifactId>olingo4</artifactId>
+	<artifactId>odata</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>olingo4</name>
+	<name>odata-with-spring</name>
 	<description>Demo project for Spring Boot</description>
 
 	<dependencies>
@@ -60,12 +60,12 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 	</properties>
 
-	<repositories>
-		<repository>
-			<id>central-release</id>
-			<name>TOTVS Java Framework: Release</name>
-			<url>http://maven.engpro.totvs.com.br/artifactory/libs-release</url>
-		</repository>
-	</repositories>
+	<!-- <repositories> -->
+	<!-- <repository> -->
+	<!-- <id>central-release</id> -->
+	<!-- <name>TOTVS Java Framework: Release</name> -->
+	<!-- <url>http://maven.engpro.totvs.com.br/artifactory/libs-release</url> -->
+	<!-- </repository> -->
+	<!-- </repositories> -->
 
 </project>
