@@ -1,4 +1,4 @@
-com\luca\olingo4\model\Products.class
-com\luca\olingo4\Olingo4Application.class
-com\luca\olingo4\model\ProductsRepository.class
-com\luca\olingo4\api\ProductsController.class
+com\luca\odata\api\ProductsController.class
+com\luca\odata\model\Products.class
+com\luca\odata\model\ProductsRepository.class
+com\luca\odata\Olingo4Application.class

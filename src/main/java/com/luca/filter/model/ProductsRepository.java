@@ -1,4 +1,4 @@
-package com.luca.odata.model;
+package com.luca.filter.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

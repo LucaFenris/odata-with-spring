@@ -1,4 +1,4 @@
-package com.luca.odata.model;
+package com.luca.filter.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
