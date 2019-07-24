@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.luca.filter.criteria.CriteriaFilter;
+import com.luca.filter.criteria.CriteriaSQL;
 import com.luca.filter.model.Products;
 import com.luca.filter.model.ProductsRepository;
 
@@ -30,11 +30,13 @@ public class ProductsController {
 	@PersistenceContext
 	private EntityManager em;
 
-	CriteriaFilter criteriaFilter = new CriteriaFilter();
+	CriteriaSQL criteriaFilter = new CriteriaSQL();
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Products> getValue(@RequestParam Map<String, String> allParams) {
+
+		System.out.println(allParams.toString());
 
 		return criteriaFilter.filter(em);
 

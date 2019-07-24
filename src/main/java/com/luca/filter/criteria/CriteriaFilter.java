@@ -1,26 +1,47 @@
 package com.luca.filter.criteria;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import com.luca.filter.QueryObject;
+import com.luca.filter.Parser.FilterParser;
 import com.luca.filter.model.Products;
 
 public class CriteriaFilter {
 
-	public List<Products> filter(EntityManager em) {
+	FilterParser filterParser = new FilterParser();
 
-		CriteriaBuilder builder = em.getCriteriaBuilder();
-		CriteriaQuery<Products> query = builder.createQuery(Products.class);
+	public List<Predicate> whereParams(CriteriaBuilder builder, Root<Products> root) {
 
-		Root<Products> root = query.from(Products.class);
+		final List<Predicate> predicates = new ArrayList<Predicate>();
+		List<QueryObject> parserList = filterParser.whereFilter();
 
-		query.select(root).where(builder.gt(root.get("id"), 1));
+		for (QueryObject object : parserList) {
+			object.getObject();
+			predicates.add(whereOperator(object, builder, root));
+		}
 
-		return em.createQuery(query).getResultList();
+		return predicates;
+
+	}
+
+	public Predicate whereOperator(QueryObject object, CriteriaBuilder builder, Root<Products> root) {
+
+		switch (object.getOperator()) {
+		case "eq":
+			return builder.equal(root.get(object.getObject()), object.getValue().toString());
+		case "gt":
+			return builder.gt(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
+		case "lt":
+			return builder.lt(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
+		default:
+			break;
+		}
+		return null;
 
 	}
 
