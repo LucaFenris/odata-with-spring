@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Olingo4Application {
+public class FilterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Olingo4Application.class, args);
+		SpringApplication.run(FilterApplication.class, args);
 	}
 
 }

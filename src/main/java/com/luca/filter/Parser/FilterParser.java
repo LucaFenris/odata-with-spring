@@ -14,8 +14,6 @@ public class FilterParser {
 		queryObject.add(new QueryObject("id", "ge", 3));
 //		queryObject.add(new QueryObject("id", "le", 10));
 
-//		queryObject.add(new QueryObject("name", "like", "Produto 2"));
-
 		queryObject.add(new QueryObject("description", "like", "%Descrição%"));
 
 		return queryObject;
