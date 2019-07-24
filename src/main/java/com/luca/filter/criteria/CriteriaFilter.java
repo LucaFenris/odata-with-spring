@@ -30,19 +30,21 @@ public class CriteriaFilter {
 	}
 
 	public Predicate whereOperator(QueryObject object, CriteriaBuilder builder, Root<Products> root) {
-
 		switch (object.getOperator()) {
 		case "eq":
 			return builder.equal(root.get(object.getObject()), object.getValue().toString());
+		case "ne":
+			return builder.notEqual(root.get(object.getObject()), object.getValue().toString());
 		case "gt":
 			return builder.gt(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
+		case "ge":
+			return builder.ge(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
 		case "lt":
 			return builder.lt(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
-		default:
-			break;
+		case "le":
+			return builder.le(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
 		}
+
 		return null;
-
 	}
-
 }
