@@ -3,3 +3,6 @@ com/luca/filter/model/ProductsRepository.class
 com/luca/filter/api/ProductsController.class
 com/luca/filter/model/Products.class
 com/luca/filter/Olingo4Application.class
+com/luca/filter/criteria/CriteriaSQL.class
+com/luca/filter/QueryObject.class
+com/luca/filter/Parser/FilterParser.class

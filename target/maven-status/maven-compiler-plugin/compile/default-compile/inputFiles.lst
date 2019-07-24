@@ -1,5 +1,8 @@
+/home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/Parser/FilterParser.java
 /home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/criteria/CriteriaFilter.java
+/home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/QueryObject.java
 /home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/Olingo4Application.java
 /home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/api/ProductsController.java
 /home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/model/ProductsRepository.java
 /home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/model/Products.java
+/home/luca/Git/Exemplos/spring-query-filter/src/main/java/com/luca/filter/criteria/CriteriaSQL.java

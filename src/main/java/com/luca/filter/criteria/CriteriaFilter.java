@@ -43,6 +43,8 @@ public class CriteriaFilter {
 			return builder.lt(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
 		case "le":
 			return builder.le(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
+		case "like":
+			return builder.like(root.get(object.getObject()), object.getValue().toString());
 		}
 
 		return null;

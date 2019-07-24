@@ -11,8 +11,12 @@ public class FilterParser {
 
 		final List<QueryObject> queryObject = new ArrayList<QueryObject>();
 
-		queryObject.add(new QueryObject("id", "ge", 2));
-		queryObject.add(new QueryObject("id", "lt", 8));
+		queryObject.add(new QueryObject("id", "ge", 3));
+//		queryObject.add(new QueryObject("id", "le", 10));
+
+//		queryObject.add(new QueryObject("name", "like", "Produto 2"));
+
+		queryObject.add(new QueryObject("description", "like", "%Descrição%"));
 
 		return queryObject;
 
