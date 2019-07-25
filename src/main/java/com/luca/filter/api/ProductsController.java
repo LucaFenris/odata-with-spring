@@ -3,6 +3,7 @@ package com.luca.filter.api;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,11 +31,27 @@ public class ProductsController {
 
 	CriteriaSQL criteriaFilter = new CriteriaSQL();
 
+	Random random = new Random();
+
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<Products> getValue() {
 
 		return criteriaFilter.filter(em);
+
+	}
+
+	@RequestMapping("/create")
+	public void createData() {
+
+		String[] names = { "Bicicleta", "Patinete", "Drone", "Escova de Dentes", "Copo Plastico", "Teclado USB" };
+		String[] descriptions = { "Voadora", "De 4 Rodas", "Sem bateria inclusa", "Eletrica", "Sem Plastico",
+				"Sem fio" };
+
+		for (int i = 0; i <= 10000; i++) {
+			productsRepository.save(new Products(i, (names[random.nextInt(6)]).toString(),
+					(" " + descriptions[random.nextInt(6)].toString())));
+		}
 
 	}
 
