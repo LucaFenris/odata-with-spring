@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,16 @@ public class ProductsController {
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Products> getValue(HttpServletRequest request) throws UnsupportedEncodingException {
+	public List<Products> products() {
+
+		return productsRepository.findAll();
+
+	}
+
+	@GetMapping
+	@RequestMapping("/filter")
+	@ResponseStatus(code = HttpStatus.OK)
+	public List<Products> filter(HttpServletRequest request) throws UnsupportedEncodingException {
 
 		String[] queryParamsList = URLDecoder.decode(request.getQueryString(), "UTF-8").split("&");
 
@@ -50,18 +60,21 @@ public class ProductsController {
 
 	}
 
-	@RequestMapping("/create")
-	public void createData() {
+	@GetMapping
+	@RequestMapping("/create/{value}")
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public String createData(@PathVariable("value") String value) {
 
 		String[] names = { "Bicicleta", "Patinete", "Drone", "Escova de Dentes", "Copo Plastico", "Teclado USB" };
 		String[] descriptions = { "Voadora", "De 4 Rodas", "Sem bateria inclusa", "Eletrica", "Sem Plastico",
 				"Sem fio" };
 
-		for (int i = 0; i <= 20000; i++) {
+		for (int i = 0; i <= Integer.parseInt(value); i++) {
 			productsRepository.save(new Products(i, (names[random.nextInt(6)]).toString(),
 					(" " + descriptions[random.nextInt(6)].toString())));
 		}
 
+		return "{\"info\": \"Dados Criados\"}";
 	}
 
 }
