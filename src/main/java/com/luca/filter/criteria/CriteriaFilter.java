@@ -15,10 +15,9 @@ public class CriteriaFilter {
 
 	FilterParser filterParser = new FilterParser();
 
-	public List<Predicate> whereParams(CriteriaBuilder builder, Root<Products> root) {
+	public List<Predicate> whereParams(CriteriaBuilder builder, Root<Products> root, List<QueryObject> parserList) {
 
 		final List<Predicate> predicates = new ArrayList<Predicate>();
-		List<QueryObject> parserList = filterParser.whereFilter();
 
 		for (QueryObject object : parserList) {
 			object.getObject();
@@ -44,7 +43,7 @@ public class CriteriaFilter {
 		case "le":
 			return builder.le(root.get(object.getObject()), Integer.parseInt(object.getValue().toString()));
 		case "like":
-			return builder.like(root.get(object.getObject()), object.getValue().toString());
+			return builder.like(root.get(object.getObject()), "%" + object.getValue().toString() + "%");
 		}
 
 		return null;

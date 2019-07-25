@@ -2,11 +2,14 @@ package com.luca.filter.api;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.luca.filter.QueryObject;
+import com.luca.filter.Parser.FilterParser;
 import com.luca.filter.criteria.CriteriaSQL;
 import com.luca.filter.model.Products;
 import com.luca.filter.model.ProductsRepository;
@@ -30,14 +35,18 @@ public class ProductsController {
 	private EntityManager em;
 
 	CriteriaSQL criteriaFilter = new CriteriaSQL();
-
 	Random random = new Random();
+	FilterParser filterParser = new FilterParser();
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<Products> getValue() {
+	public List<Products> getValue(HttpServletRequest request) throws UnsupportedEncodingException {
 
-		return criteriaFilter.filter(em);
+		String[] queryParamsList = URLDecoder.decode(request.getQueryString(), "UTF-8").split("&");
+
+		List<QueryObject> parserList = filterParser.whereFilter(queryParamsList);
+
+		return criteriaFilter.filter(em, parserList);
 
 	}
 
@@ -48,7 +57,7 @@ public class ProductsController {
 		String[] descriptions = { "Voadora", "De 4 Rodas", "Sem bateria inclusa", "Eletrica", "Sem Plastico",
 				"Sem fio" };
 
-		for (int i = 0; i <= 10000; i++) {
+		for (int i = 0; i <= 20000; i++) {
 			productsRepository.save(new Products(i, (names[random.nextInt(6)]).toString(),
 					(" " + descriptions[random.nextInt(6)].toString())));
 		}
