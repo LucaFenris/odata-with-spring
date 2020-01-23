@@ -1,6 +1,14 @@
 language: java
-script:
- - mvn clean install -DskipTests
- - mvn test
+
 jdk:
- - openjdk8
+- openjdk8
+
+services:
+- docker
+
+before_install:
+- mvn clean
+- docker pull openjdk:8-jdk-alpine
+
+script:
+- mvn clean install
