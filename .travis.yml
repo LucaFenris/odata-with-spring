@@ -3,12 +3,5 @@ language: java
 jdk:
 - openjdk8
 
-services:
-- docker
-
-before_install:
-- mvn clean
-- docker pull openjdk:8-jdk-alpine
-
 script:
-- mvn clean install
+- mvn dependency:go-offline
