@@ -3,4 +3,4 @@ script:
  - mvn clean install -DskipTests
  - mvn test
 jdk:
- - oraclejdk8
+ - openjdk8
